@@ -1,0 +1,34 @@
+1. 比较小的包直接使用 pycharm 下载
+
+2. 大一点的使用 pip install 端下载
+
+3. 再大一点的去官网安装包下载网站直接下载 whl 文件。其中 cp36 是指 3.6 版
+本的 python，收藏夹 code website
+
+4. 可以直接 pip install +把已下载的文件拖入到终端框里面
+
+5.pycharm 标黄的原因：是解释器中的 python 路径里面没有 cv，一般哎site-packbages/cv2/cv.pyd
+
+6. 终端下载大面积飘红可能是因为开了 vpn
+
+7. conda 下载主要是需要虚拟环境，需要创建和激活虚拟环境，可以在里面创建
+不同版本的 python 版本。使用 Ananaconda prompt
+
+8. 默认 python 版本是直接 win+r 打开 cmd，
+需要运行命令：
+d:
+cd "D:\python\Python\venv\Scripts"
+pip install --
+实际上pip 命令需要调用 pip.exe文件，一般在script文件夹内
+
+直接在c：里面pip是调用c盘里面python310的pip.exe，会下载到c盘的python里面
+
+9.在pycharm内打不开html文件是因为没有吧temp...文件夹设置为根目录
+
+10.安装less转css插件，如果文件夹生成了index.css.map文件则说明成功了
+
+11.pip show package_name可以查看包所在的位置
+
+12.Office下载方式：学校的office下载以后需要登录账户才能激活，onenote的下载只能使用2016版本的
+
+13.
