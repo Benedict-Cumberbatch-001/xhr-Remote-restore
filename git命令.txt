@@ -77,7 +77,8 @@ git push fp master
 
 git pull origin master --force
 这将会强制拉取origin远程仓库的master分支并覆盖本地分支。
-
+git push origin master --force
+这将会强制将本地分支的更改推送到origin远程仓库的master分支，覆盖远程分支的历史记录。
 
 
 
