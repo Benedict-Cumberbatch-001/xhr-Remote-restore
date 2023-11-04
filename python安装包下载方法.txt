@@ -11,8 +11,23 @@
 
 6. 终端下载大面积飘红可能是因为开了 vpn
 
-7. conda 下载主要是需要虚拟环境，需要创建和激活虚拟环境，可以在里面创建
-不同版本的 python 版本。使用 Ananaconda prompt
+7. Anaconda下载主要是需要虚拟环境，需要创建和激活虚拟环境，可以在里面创建
+不同版本的 python 版本。使用 Anaconda prompt
+（1）Anaconda的操作
+1）***conda config --show channels***查看下载源，可以更改为国内源
+2）***conda  create -n <环境name> python=3.6（python版本）***创建拥有指定python版本的虚拟环境
+4）***conda env list***查看拥有的虚拟环境
+5）***conda activate  <虚拟环境名>***激活虚拟环境
+6）***conda install <包名>/pip install <包名>***安装库
+7）***conda remove -n <虚拟环境名>***删除虚拟环境
+8）***conda remove --name <虚拟环境名> <包名>***删除某个环境内的某个库
+9）***conda list***显示所有的安装库
+10）***conda info <包名>***显示指定包的详细信息，包括包的名称、版本号、依赖关系、安装路径等等
+
+（2）jupyter notebook 使用
+1）***jupyter notebooke:***在e盘内打开jupyter notebook
+2）Kernel-->change kernel-->环境名 更改jupyter notebook使用的环境
+
 
 8. 默认 python 版本是直接 win+r 打开 cmd，
 需要运行命令：
