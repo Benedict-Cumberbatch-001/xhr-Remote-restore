@@ -13,13 +13,14 @@
 
 7. Anaconda下载主要是需要虚拟环境，需要创建和激活虚拟环境，可以在里面创建
 不同版本的 python 版本。使用 Anaconda prompt
+conda不能挂梯子使用
 （1）Anaconda的操作
 1）***conda config --show channels***查看下载源，可以更改为国内源
 2）***conda  create -n <环境name> python=3.6（python版本）***创建拥有指定python版本的虚拟环境
 4）***conda env list***查看拥有的虚拟环境
 5）***conda activate  <虚拟环境名>***激活虚拟环境
 6）***conda install <包名>/pip install <包名>***安装库
-7）***conda remove -n <虚拟环境名>***删除虚拟环境
+7）***conda env remove -n <虚拟环境名>***删除虚拟环境
 8）***conda remove --name <虚拟环境名> <包名>***删除某个环境内的某个库
 9）***conda list***显示所有的安装库
 10）***conda info <包名>***显示指定包的详细信息，包括包的名称、版本号、依赖关系、安装路径等等
@@ -27,7 +28,8 @@
 （2）jupyter notebook 使用
 1）***jupyter notebooke:***在e盘内打开jupyter notebook
 2）Kernel-->change kernel-->环境名 更改jupyter notebook使用的环境
-
+（3）在pycharm中添加Anaconda创建的虚拟环境
+1）先找到添加“系统解释器”在里面找到虚拟环境Tools文件夹下面的python.exe解释器，再去添加Ananconda虚拟环境
 
 8. 默认 python 版本是直接 win+r 打开 cmd，
 需要运行命令：
@@ -46,4 +48,15 @@ pip install --
 
 12.Office下载方式：学校的office下载以后需要登录账户才能激活，onenote的下载只能使用2016版本的
 
-13.
+13.使用pyinstaller打包py文件尽量保证环境里没有多余的包，不然会很大。而且运行的时候，要进入到你想生成文件放的文件夹路径下，再运行。
+
+14.生成requirements.txt的依赖项：
+1) 在当前项目的终端/终端进入当前项目文件夹，
+2) 运行pip freeze > requirements.txt
+
+15.相对路径/绝对路径
+在py文件中，经常涉及到相对路径和绝对路径，绝对路径要从盘符写起，且斜杠要用双反斜杠表示\\转义字符
+某个项目如果要在别的电脑上，或者发给别人就需要写相对路径
+《./》表示当前级目录（可以省略）
+《../》表示上层目录
+《../../》表示上上层目录
