@@ -1,0 +1,868 @@
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<div class="article-header-box">
+<div class="article-header">
+<div class="article-title-box">
+<h1 class="title-article" id="articleContentId">Windows10安装PCL1.14.0及点云配准</h1>
+</div>
+
+</div>
+</div>
+<div id="blogHuaweiyunAdvert"></div>
+<article class="baidu_pl">
+<div class="article_content clearfix" id="article_content">
+<link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css" rel="stylesheet"/>
+<link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-044f2cf1dc.css" rel="stylesheet"/>
+<div class="htmledit_views" id="content_views">
+<p></p>
+<p></p>
+<p>一、下载visual studio2022</p>
+<p>下载网址：<a href="https://visualstudio.microsoft.com/zh-hans/" rel="nofollow" title="Visual Studio: 面向软件开发人员和 Teams 的 IDE 和代码编辑器 (microsoft.com)">Visual Studio: 面向软件开发人员和 Teams 的 IDE 和代码编辑器 (microsoft.com)</a></p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/2be6bb593c864fdb82df70b8e1ef9261.png"/></p>
+<p>安装的时候选择"使用C++的桌面开发“，同时可以修改文件路径，可以放在D盘。修改文件路径的时候，共享组件、工具和SDK的路径无法修改，可能是因为你之前有安装过Visual studio。可以通过以下操作解决：</p>
+<p>1.首先WIN+R，输入regedit回车</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/87e7fc7dc3cf41caa2217f0c3c95b6c1.png"/></p>
+<p>2.按照这个顺序展开目录</p>
+<p><strong><code>HKEY_LOCAL_MACHINE</code><br/><code>SOFTWARE</code><br/><code>Microsoft</code><br/><code>VisualStudio</code><br/><code>Setup</code></strong><br/> 3.右键删除<strong><code>SharedInstallationPath</code> </strong>和<strong> <code>CachePath，就可以修改</code></strong>共享组件、工具和SDK的路径了</p>
+<p>二、安装PCL1.14.0</p>
+<p>都是以我自己的安装路径为例</p>
+<p>1.下载</p>
+<p>官网下载：<a href="https://github.com/PointCloudLibrary/pcl/releases" title="Releases · PointCloudLibrary/pcl · GitHub">Releases · PointCloudLibrary/pcl · GitHub</a></p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/39546b142fe540a8a60309a2db078551.png"/></p>
+<p>只要下载PCL-1.14.0-AllInOne-msvc2022-win64.exe和pcl-1.14.0-pdb-msvc2022-win64.zip两个文件即可。</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/bde2343ea561436b9711c0df02c6e612.png"/></p>
+<p>如果下载太慢，我这里已经下载好了：</p>
+<p>链接：https://pan.baidu.com/s/177DvR5gOcVL7iPm4xI7s_w <br/> 提取码：wstc </p>
+<p>2.安装</p>
+<p>点击PCL-1.14.0-AllInOne-msvc2022-win64.exe进行安装</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/290a5899ac824281b8e69c879fa020d4.png"/></p>
+<p>下一步</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/1b4dd75e50c24c09a10a099d7e0bdddc.png"/></p>
+<p>我接受</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/c390299e1818425c82426549e0125fe9.png"/></p>
+<p>选择Add PCL to the system Path for all users，下一步</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/49d17f7dd1634cd2b5a28bf4960a550d.png"/></p>
+<p>可以选择修改路径，我自己的路径是C:\Compiler\PCL\PCL 1.14.0，你可以选择自己的路径，不过一定要记得，因为之后配置环境变量要用到，然后下一步</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/3e164131019c465092974e99c280c567.png"/></p>
+<p>没必要创建快捷方式，下一步，然后点击安装；在安装过程中，会出现提醒你变量名太长，没办法写入环境变量，这个时候你直接确定就行，等安装完成之后，自己配置环境变量。安装完成之后会出现这三个应用</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/33348e2332cc4d76b60c670f7f49893b.png"/></p>
+<p>把OpenNi2.2 SDK for Windows 64-bit给卸载掉，因为它有默认安装路径，即使我们修改文件安装路径，它还是安装在默认路径；卸载完之后，打开C:\Compiler\PCL\PCL 1.14.0\3rdParty\OpenNI2文件夹，发现里面有一个OpenNI-Windows-x64-2.2.msi，这是安装PCL-1.14.0-AllInOne-msvc2022-win64.exe的时候附带的，点击安装，可以帮你再次安装OpenNi2.2 SDK for Windows 64-bit，而且可以修改成自己的路径，我的路径是C:\Compiler\PCL\PCL 1.14.0\3rdParty\OpenNI2</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/c3a4ea4c10e3484f8c257b1cf980c735.png"/></p>
+<p>安装完成之后就会包含这些内容</p>
+<p>接着把pcl-1.14.0-pdb-msvc2022-win64.zip解压</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/9fbdfa1145e84eb4b83dc7d39da4a216.png"/></p>
+<p>把里面的所有pdb文件都复制到C:\Compiler\PCL\PCL 1.14.0\bin里面</p>
+<p>3.配置环境变量</p>
+<p>此电脑右键属性</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/6d54a351dcf9402a924e4ca5f6bfe38a.png"/></p>
+<p>点击高级系统设置</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/a78c3b3364b446fb8f694b0b2fb73e34.png"/></p>
+<p>点击环境变量</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/215edb48b28a4bd597c609c4ef222472.png"/></p>
+<p>确保这四个都存在，这是安装PCL-1.14.0-AllInOne-msvc2022-win64.exe的时候自动生成的，接着点击Path开始配置环境变量</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/81a5db737f9f4bfb8a3955cf01ee9053.png"/></p>
+<pre><code class="language-bash">C:\Compiler\PCL\PCL 1.14.0\bin
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\VTK\bin
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\OpenNI2\Tools
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\OpenNI2\Redist
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\Boost\lib
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\Qhull\bin
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\FLANN\bin</code></pre>
+<p>把这几个路径添加进环境变量即可。</p>
+<p>三、创建项目</p>
+<p>打开visual studio2022</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/8f49a1e1e58a4b6f95835781cc2bea83.png"/></p>
+<p>创建新项目</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/a4f1c8659451489fb5ea7ca9f50c2413.png"/></p>
+<p>选择空项目，下一步</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/d98dd55346034af387f02196e75d6f64.png"/></p>
+<p>可以修改项目名称，和位置；创建项目</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/30f0d03d633b4d54ae4613b42669dd56.png"/></p>
+<p>右键点击源文件，添加新项，随便取个名字，点击添加（注意：我已经添加过文件了，如果是新创建的文件，源文件里面是啥也没有的）</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/713c6e1b1ac44907a63a90ba593bda24.png"/></p>
+<p>右键点击解决方案下方的pointCloud（这个是项目名称），点击属性，就会出现这个属性页，点击VC++目录</p>
+<pre><code class="language-bash">C:\Compiler\PCL\PCL 1.14.0\3rdParty\Boost\include\boost-1_84
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\Eigen3\include\eigen3
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\FLANN\include
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\Qhull\include
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\VTK\include\vtk-9.3
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\OpenNI2\Include
+C:\Compiler\PCL\PCL 1.14.0\include\pcl-1.14</code></pre>
+<p>把这些路径加入到包含目录里</p>
+<pre><code class="language-bash">C:\Compiler\PCL\PCL 1.14.0\3rdParty\FLANN\lib
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\Boost\lib
+C:\Compiler\PCL\PCL 1.14.0\lib
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\VTK\lib
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\Qhull\lib
+C:\Compiler\PCL\PCL 1.14.0\3rdParty\OpenNI2\Lib</code></pre>
+<p>这些路径放到库目录里</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/6cc48c653ad045ceba554a6d8abbd91a.png"/></p>
+<p>然后点击C/C++的所有选项，把SDL检查改成否</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/52392318d2de4038b4ad4b93240d749d.png"/></p>
+<p>再点击C/C++的代码生成，修改启用增强指令集为高级适量扩展(X86/X64)(/arch:AVX)</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/feb1b92fdfd94d369abcce81597655c3.png"/></p>
+<pre><code class="language-bash">BOOST_USE_WINDOWS_H
+NOMINMAX
+_CRT_SECURE_NO_DEPRECATE</code></pre>
+<p>在C/C++的预处理器里面的预处理定义增加这三行</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/fcac874d5313415d929a7a4b0435025f.png"/></p>
+<p>可以用代码获取附加项文件名</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+#include &lt;filesystem&gt;
+namespace fs = std::filesystem;
+
+bool ends_with(const std::string&amp; value, const std::string&amp; ending)
+{
+    if (ending.size() &gt; value.size()) return false;
+    return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
+}
+
+int main() {
+    std::string path1 = "C:\\Compiler\\PCL\\PCL 1.14.0\\3rdParty\\VTK\\lib\\";  // 你需要替换为你的具体路径
+    std::string path2 = "C:\\Compiler\\PCL\\PCL 1.14.0\\lib\\";  // 你需要替换为你的具体路径
+
+    std::ofstream ofs_glib1("gLibFiles1.txt");
+    std::ofstream ofs_other1("otherFiles1.txt");
+
+    std::ofstream ofs_glib2("gLibFiles2.txt");
+    std::ofstream ofs_other2("otherFiles2.txt");
+
+    if (!ofs_glib1 || !ofs_other1) {
+        std::cerr &lt;&lt; "无法打开输出文件.\n";
+        return 1;
+    }
+    if (!ofs_glib2 || !ofs_other2) {
+        std::cerr &lt;&lt; "无法打开输出文件.\n";
+        return 1;
+    }
+    for (auto&amp; p : fs::directory_iterator(path1)) {
+        if (p.is_regular_file()) {
+            std::string filename = p.path().filename().string();
+            if (ends_with(filename, "-gd.lib") || ends_with(filename, "d.lib")) {  // 检查文件名是否以 "-gd.lib" 或 "d.lib" 结尾
+                ofs_glib1 &lt;&lt; filename &lt;&lt; '\n';
+            }
+            else {
+                ofs_other1 &lt;&lt; filename &lt;&lt; '\n';
+            }
+        }
+    }
+    for (auto&amp; p : fs::directory_iterator(path2)) {
+        if (p.is_regular_file()) {
+            std::string filename = p.path().filename().string();
+            if (ends_with(filename, "-gd.lib") || ends_with(filename, "d.lib")) {  // 检查文件名是否以 "-gd.lib" 或 "d.lib" 结尾
+                ofs_glib2 &lt;&lt; filename &lt;&lt; '\n';
+            }
+            else {
+                ofs_other2 &lt;&lt; filename &lt;&lt; '\n';
+            }
+        }
+    }
+    return 0;
+}
+
+
+//C:\\Compiler\\PCL\\PCL 1.14.0\\3rdParty\\VTK\\lib\\</code></pre>
+<p>一共可以得到四个txt文件</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/39d92c44f62a4f17855ce691c27e959c.png"/></p>
+<p>上面两个保存的是Debug版本的附加项 ，把这两个文件的内容整合到一起：</p>
+<pre><code class="language-bash">pcl_commond.lib
+pcl_featuresd.lib
+pcl_filtersd.lib
+pcl_iod.lib
+pcl_io_plyd.lib
+pcl_kdtreed.lib
+pcl_keypointsd.lib
+pcl_mld.lib
+pcl_octreed.lib
+pcl_outofcored.lib
+pcl_peopled.lib
+pcl_recognitiond.lib
+pcl_registrationd.lib
+pcl_sample_consensusd.lib
+pcl_searchd.lib
+pcl_segmentationd.lib
+pcl_stereod.lib
+pcl_surfaced.lib
+pcl_trackingd.lib
+pcl_visualizationd.lib
+vtkcgns-9.3-gd.lib
+vtkChartsCore-9.3-gd.lib
+vtkCommonColor-9.3-gd.lib
+vtkCommonComputationalGeometry-9.3-gd.lib
+vtkCommonCore-9.3-gd.lib
+vtkCommonDataModel-9.3-gd.lib
+vtkCommonExecutionModel-9.3-gd.lib
+vtkCommonMath-9.3-gd.lib
+vtkCommonMisc-9.3-gd.lib
+vtkCommonSystem-9.3-gd.lib
+vtkCommonTransforms-9.3-gd.lib
+vtkDICOMParser-9.3-gd.lib
+vtkDomainsChemistry-9.3-gd.lib
+vtkDomainsChemistryOpenGL2-9.3-gd.lib
+vtkdoubleconversion-9.3-gd.lib
+vtkexodusII-9.3-gd.lib
+vtkexpat-9.3-gd.lib
+vtkFiltersAMR-9.3-gd.lib
+vtkFiltersCore-9.3-gd.lib
+vtkFiltersExtraction-9.3-gd.lib
+vtkFiltersFlowPaths-9.3-gd.lib
+vtkFiltersGeneral-9.3-gd.lib
+vtkFiltersGeneric-9.3-gd.lib
+vtkFiltersGeometry-9.3-gd.lib
+vtkFiltersHybrid-9.3-gd.lib
+vtkFiltersHyperTree-9.3-gd.lib
+vtkFiltersImaging-9.3-gd.lib
+vtkFiltersModeling-9.3-gd.lib
+vtkFiltersParallel-9.3-gd.lib
+vtkFiltersParallelImaging-9.3-gd.lib
+vtkFiltersPoints-9.3-gd.lib
+vtkFiltersProgrammable-9.3-gd.lib
+vtkFiltersSelection-9.3-gd.lib
+vtkFiltersSMP-9.3-gd.lib
+vtkFiltersSources-9.3-gd.lib
+vtkFiltersStatistics-9.3-gd.lib
+vtkFiltersTexture-9.3-gd.lib
+vtkFiltersTopology-9.3-gd.lib
+vtkFiltersVerdict-9.3-gd.lib
+vtkfmt-9.3-gd.lib
+vtkfreetype-9.3-gd.lib
+vtkGeovisCore-9.3-gd.lib
+vtkgl2ps-9.3-gd.lib
+vtkglew-9.3-gd.lib
+vtkhdf5-9.3-gd.lib
+vtkhdf5_hl-9.3-gd.lib
+vtkImagingColor-9.3-gd.lib
+vtkImagingCore-9.3-gd.lib
+vtkImagingFourier-9.3-gd.lib
+vtkImagingGeneral-9.3-gd.lib
+vtkImagingHybrid-9.3-gd.lib
+vtkImagingMath-9.3-gd.lib
+vtkImagingMorphological-9.3-gd.lib
+vtkImagingSources-9.3-gd.lib
+vtkImagingStatistics-9.3-gd.lib
+vtkImagingStencil-9.3-gd.lib
+vtkInfovisCore-9.3-gd.lib
+vtkInfovisLayout-9.3-gd.lib
+vtkInteractionImage-9.3-gd.lib
+vtkInteractionStyle-9.3-gd.lib
+vtkInteractionWidgets-9.3-gd.lib
+vtkIOAMR-9.3-gd.lib
+vtkIOAsynchronous-9.3-gd.lib
+vtkIOCesium3DTiles-9.3-gd.lib
+vtkIOCGNSReader-9.3-gd.lib
+vtkIOChemistry-9.3-gd.lib
+vtkIOCityGML-9.3-gd.lib
+vtkIOCONVERGECFD-9.3-gd.lib
+vtkIOCore-9.3-gd.lib
+vtkIOEnSight-9.3-gd.lib
+vtkIOExodus-9.3-gd.lib
+vtkIOExport-9.3-gd.lib
+vtkIOExportGL2PS-9.3-gd.lib
+vtkIOExportPDF-9.3-gd.lib
+vtkIOGeometry-9.3-gd.lib
+vtkIOHDF-9.3-gd.lib
+vtkIOImage-9.3-gd.lib
+vtkIOImport-9.3-gd.lib
+vtkIOInfovis-9.3-gd.lib
+vtkIOIOSS-9.3-gd.lib
+vtkIOLegacy-9.3-gd.lib
+vtkIOLSDyna-9.3-gd.lib
+vtkIOMINC-9.3-gd.lib
+vtkIOMotionFX-9.3-gd.lib
+vtkIOMovie-9.3-gd.lib
+vtkIONetCDF-9.3-gd.lib
+vtkIOOggTheora-9.3-gd.lib
+vtkIOParallel-9.3-gd.lib
+vtkIOParallelXML-9.3-gd.lib
+vtkIOPLY-9.3-gd.lib
+vtkIOSegY-9.3-gd.lib
+vtkIOSQL-9.3-gd.lib
+vtkioss-9.3-gd.lib
+vtkIOTecplotTable-9.3-gd.lib
+vtkIOVeraOut-9.3-gd.lib
+vtkIOVideo-9.3-gd.lib
+vtkIOXML-9.3-gd.lib
+vtkIOXMLParser-9.3-gd.lib
+vtkjpeg-9.3-gd.lib
+vtkjsoncpp-9.3-gd.lib
+vtkkissfft-9.3-gd.lib
+vtklibharu-9.3-gd.lib
+vtklibproj-9.3-gd.lib
+vtklibxml2-9.3-gd.lib
+vtkloguru-9.3-gd.lib
+vtklz4-9.3-gd.lib
+vtklzma-9.3-gd.lib
+vtkmetaio-9.3-gd.lib
+vtknetcdf-9.3-gd.lib
+vtkogg-9.3-gd.lib
+vtkParallelCore-9.3-gd.lib
+vtkParallelDIY-9.3-gd.lib
+vtkpng-9.3-gd.lib
+vtkpugixml-9.3-gd.lib
+vtkRenderingAnnotation-9.3-gd.lib
+vtkRenderingContext2D-9.3-gd.lib
+vtkRenderingContextOpenGL2-9.3-gd.lib
+vtkRenderingCore-9.3-gd.lib
+vtkRenderingFreeType-9.3-gd.lib
+vtkRenderingGL2PSOpenGL2-9.3-gd.lib
+vtkRenderingHyperTreeGrid-9.3-gd.lib
+vtkRenderingImage-9.3-gd.lib
+vtkRenderingLabel-9.3-gd.lib
+vtkRenderingLICOpenGL2-9.3-gd.lib
+vtkRenderingLOD-9.3-gd.lib
+vtkRenderingOpenGL2-9.3-gd.lib
+vtkRenderingSceneGraph-9.3-gd.lib
+vtkRenderingUI-9.3-gd.lib
+vtkRenderingVolume-9.3-gd.lib
+vtkRenderingVolumeOpenGL2-9.3-gd.lib
+vtkRenderingVtkJS-9.3-gd.lib
+vtksqlite-9.3-gd.lib
+vtksys-9.3-gd.lib
+vtkTestingRendering-9.3-gd.lib
+vtktheora-9.3-gd.lib
+vtktiff-9.3-gd.lib
+vtkverdict-9.3-gd.lib
+vtkViewsContext2D-9.3-gd.lib
+vtkViewsCore-9.3-gd.lib
+vtkViewsInfovis-9.3-gd.lib
+vtkWrappingTools-9.3-gd.lib
+vtkzlib-9.3-gd.lib</code></pre>
+<p>下面两个保存的是Release版本的附加项，把这两个文件的内容整合到一起：</p>
+<pre><code class="language-bash">pcl_common.lib
+pcl_features.lib
+pcl_filters.lib
+pcl_io.lib
+pcl_io_ply.lib
+pcl_kdtree.lib
+pcl_keypoints.lib
+pcl_ml.lib
+pcl_octree.lib
+pcl_outofcore.lib
+pcl_people.lib
+pcl_recognition.lib
+pcl_registration.lib
+pcl_sample_consensus.lib
+pcl_search.lib
+pcl_segmentation.lib
+pcl_stereo.lib
+pcl_surface.lib
+pcl_tracking.lib
+pcl_visualization.lib
+vtkcgns-9.3.lib
+vtkChartsCore-9.3.lib
+vtkCommonColor-9.3.lib
+vtkCommonComputationalGeometry-9.3.lib
+vtkCommonCore-9.3.lib
+vtkCommonDataModel-9.3.lib
+vtkCommonExecutionModel-9.3.lib
+vtkCommonMath-9.3.lib
+vtkCommonMisc-9.3.lib
+vtkCommonSystem-9.3.lib
+vtkCommonTransforms-9.3.lib
+vtkDICOMParser-9.3.lib
+vtkDomainsChemistry-9.3.lib
+vtkDomainsChemistryOpenGL2-9.3.lib
+vtkdoubleconversion-9.3.lib
+vtkexodusII-9.3.lib
+vtkexpat-9.3.lib
+vtkFiltersAMR-9.3.lib
+vtkFiltersCellGrid-9.3.lib
+vtkFiltersCore-9.3.lib
+vtkFiltersExtraction-9.3.lib
+vtkFiltersFlowPaths-9.3.lib
+vtkFiltersGeneral-9.3.lib
+vtkFiltersGeneric-9.3.lib
+vtkFiltersGeometry-9.3.lib
+vtkFiltersGeometryPreview-9.3.lib
+vtkFiltersHybrid-9.3.lib
+vtkFiltersHyperTree-9.3.lib
+vtkFiltersImaging-9.3.lib
+vtkFiltersModeling-9.3.lib
+vtkFiltersParallel-9.3.lib
+vtkFiltersParallelImaging-9.3.lib
+vtkFiltersPoints-9.3.lib
+vtkFiltersProgrammable-9.3.lib
+vtkFiltersReduction-9.3.lib
+vtkFiltersSelection-9.3.lib
+vtkFiltersSMP-9.3.lib
+vtkFiltersSources-9.3.lib
+vtkFiltersStatistics-9.3.lib
+vtkFiltersTensor-9.3.lib
+vtkFiltersTexture-9.3.lib
+vtkFiltersTopology-9.3.lib
+vtkFiltersVerdict-9.3.lib
+vtkfmt-9.3.lib
+vtkfreetype-9.3.lib
+vtkGeovisCore-9.3.lib
+vtkgl2ps-9.3.lib
+vtkglew-9.3.lib
+vtkhdf5-9.3.lib
+vtkhdf5_hl-9.3.lib
+vtkImagingColor-9.3.lib
+vtkImagingCore-9.3.lib
+vtkImagingFourier-9.3.lib
+vtkImagingGeneral-9.3.lib
+vtkImagingHybrid-9.3.lib
+vtkImagingMath-9.3.lib
+vtkImagingMorphological-9.3.lib
+vtkImagingSources-9.3.lib
+vtkImagingStatistics-9.3.lib
+vtkImagingStencil-9.3.lib
+vtkInfovisCore-9.3.lib
+vtkInfovisLayout-9.3.lib
+vtkInteractionImage-9.3.lib
+vtkInteractionStyle-9.3.lib
+vtkInteractionWidgets-9.3.lib
+vtkIOAMR-9.3.lib
+vtkIOAsynchronous-9.3.lib
+vtkIOCellGrid-9.3.lib
+vtkIOCesium3DTiles-9.3.lib
+vtkIOCGNSReader-9.3.lib
+vtkIOChemistry-9.3.lib
+vtkIOCityGML-9.3.lib
+vtkIOCONVERGECFD-9.3.lib
+vtkIOCore-9.3.lib
+vtkIOEnSight-9.3.lib
+vtkIOExodus-9.3.lib
+vtkIOExport-9.3.lib
+vtkIOExportGL2PS-9.3.lib
+vtkIOExportPDF-9.3.lib
+vtkIOFLUENTCFF-9.3.lib
+vtkIOGeometry-9.3.lib
+vtkIOHDF-9.3.lib
+vtkIOImage-9.3.lib
+vtkIOImport-9.3.lib
+vtkIOInfovis-9.3.lib
+vtkIOIOSS-9.3.lib
+vtkIOLegacy-9.3.lib
+vtkIOLSDyna-9.3.lib
+vtkIOMINC-9.3.lib
+vtkIOMotionFX-9.3.lib
+vtkIOMovie-9.3.lib
+vtkIONetCDF-9.3.lib
+vtkIOOggTheora-9.3.lib
+vtkIOParallel-9.3.lib
+vtkIOParallelXML-9.3.lib
+vtkIOPLY-9.3.lib
+vtkIOSegY-9.3.lib
+vtkIOSQL-9.3.lib
+vtkioss-9.3.lib
+vtkIOTecplotTable-9.3.lib
+vtkIOVeraOut-9.3.lib
+vtkIOVideo-9.3.lib
+vtkIOXML-9.3.lib
+vtkIOXMLParser-9.3.lib
+vtkjpeg-9.3.lib
+vtkjsoncpp-9.3.lib
+vtkkissfft-9.3.lib
+vtklibharu-9.3.lib
+vtklibproj-9.3.lib
+vtklibxml2-9.3.lib
+vtkloguru-9.3.lib
+vtklz4-9.3.lib
+vtklzma-9.3.lib
+vtkmetaio-9.3.lib
+vtknetcdf-9.3.lib
+vtkogg-9.3.lib
+vtkParallelCore-9.3.lib
+vtkParallelDIY-9.3.lib
+vtkpng-9.3.lib
+vtkpugixml-9.3.lib
+vtkRenderingAnnotation-9.3.lib
+vtkRenderingCellGrid-9.3.lib
+vtkRenderingContext2D-9.3.lib
+vtkRenderingContextOpenGL2-9.3.lib
+vtkRenderingCore-9.3.lib
+vtkRenderingFreeType-9.3.lib
+vtkRenderingGL2PSOpenGL2-9.3.lib
+vtkRenderingHyperTreeGrid-9.3.lib
+vtkRenderingImage-9.3.lib
+vtkRenderingLabel-9.3.lib
+vtkRenderingLICOpenGL2-9.3.lib
+vtkRenderingLOD-9.3.lib
+vtkRenderingOpenGL2-9.3.lib
+vtkRenderingSceneGraph-9.3.lib
+vtkRenderingUI-9.3.lib
+vtkRenderingVolume-9.3.lib
+vtkRenderingVolumeOpenGL2-9.3.lib
+vtkRenderingVtkJS-9.3.lib
+vtksqlite-9.3.lib
+vtksys-9.3.lib
+vtkTestingRendering-9.3.lib
+vtktheora-9.3.lib
+vtktiff-9.3.lib
+vtkverdict-9.3.lib
+vtkViewsContext2D-9.3.lib
+vtkViewsCore-9.3.lib
+vtkViewsInfovis-9.3.lib
+vtkWrappingTools-9.3.lib
+vtkzlib-9.3.lib</code></pre>
+<p>选择哪个版本看你需求，在链接器的输入的附加依赖项里增加相应版本的附加项，配置完成，电脑重启，即可生效</p>
+<p>四、确认是否安装成功</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;ctime&gt;
+#include &lt;pcl/point_cloud.h&gt;
+#include &lt;pcl/octree/octree.h&gt;
+#include &lt;boost/thread/thread.hpp&gt;
+#include &lt;pcl/visualization/pcl_visualizer.h&gt;
+using namespace std;
+int
+main(int argc, char** argv)
+{
+	srand((unsigned int)time(NULL));
+	pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloud(new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+	// 创建点云数据
+	cloud-&gt;width = 1000;
+	cloud-&gt;height = 1;
+	cloud-&gt;points.resize(cloud-&gt;width * cloud-&gt;height);
+	for (size_t i = 0; i &lt; cloud-&gt;points.size(); ++i)
+	{
+		cloud-&gt;points[i].x = 1024.0f * rand() / (RAND_MAX + 1.0f);
+		cloud-&gt;points[i].y = 1024.0f * rand() / (RAND_MAX + 1.0f);
+		cloud-&gt;points[i].z = 1024.0f * rand() / (RAND_MAX + 1.0f);
+	}
+
+	pcl::octree::OctreePointCloudSearch&lt;pcl::PointXYZ&gt; octree(0.1);
+	octree.setInputCloud(cloud);
+	octree.addPointsFromInputCloud();
+	pcl::PointXYZ searchPoint;
+	searchPoint.x = 1024.0f * rand() / (RAND_MAX + 1.0f);
+	searchPoint.y = 1024.0f * rand() / (RAND_MAX + 1.0f);
+	searchPoint.z = 1024.0f * rand() / (RAND_MAX + 1.0f);
+
+	//半径内近邻搜索
+	vector&lt;int&gt;pointIdxRadiusSearch;
+	vector&lt;float&gt;pointRadiusSquaredDistance;
+	float radius = 256.0f * rand() / (RAND_MAX + 1.0f);
+	cout &lt;&lt; "Neighbors within radius search at (" &lt;&lt; searchPoint.x
+		&lt;&lt; " " &lt;&lt; searchPoint.y
+		&lt;&lt; " " &lt;&lt; searchPoint.z
+		&lt;&lt; ") with radius=" &lt;&lt; radius &lt;&lt; endl;
+	if (octree.radiusSearch(searchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) &gt; 0)
+	{
+		for (size_t i = 0; i &lt; pointIdxRadiusSearch.size(); ++i)
+			cout &lt;&lt; "    " &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].x
+			&lt;&lt; " " &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].y
+			&lt;&lt; " " &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].z
+			&lt;&lt; " (squared distance: " &lt;&lt; pointRadiusSquaredDistance[i] &lt;&lt; ")" &lt;&lt; endl;
+	}
+	// 初始化点云可视化对象
+	boost::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt;viewer(new pcl::visualization::PCLVisualizer("v1"));
+	viewer-&gt;setBackgroundColor(0, 0, 0);  //设置背景颜色为黑色
+	// 对点云着色可视化 (red).
+	pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt;target_color(cloud, 255, 0, 0);
+	viewer-&gt;addPointCloud&lt;pcl::PointXYZ&gt;(cloud, target_color, "target cloud");
+	viewer-&gt;setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "target cloud");
+
+	// 等待直到可视化窗口关闭
+	while (!viewer-&gt;wasStopped())
+	{
+		viewer-&gt;spinOnce(100);
+		boost::this_thread::sleep(boost::posix_time::microseconds(1000));
+	}
+
+	return (0);
+}
+
+</code></pre>
+<p>这份代码运行之后出现红色点云：</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/983413d63d3147b0a3754af6bdb9984d.png"/></p>
+<p>五、点云配准</p>
+<pre><code class="language-cpp">#include &lt;pcl/point_types.h&gt;
+#include &lt;pcl/point_cloud.h&gt;
+#include &lt;pcl/features/fpfh_omp.h&gt;
+#include &lt;pcl/io/ply_io.h&gt;//pcd输入输出头文件
+#include &lt;pcl/registration/icp.h&gt;//点云icp算法头文件
+#include &lt;pcl/registration/ndt.h&gt;//点云NDT算法头文件
+#include &lt;pcl/registration/ia_ransac.h&gt;//点云ransac迭代对齐算法(SAC-IA)算法头文件
+#include &lt;pcl/registration/gicp.h&gt;//点云GICP算法的头文件
+#include &lt;pcl/visualization/pcl_visualizer.h&gt;//点云可视化头文件
+#include &lt;time.h&gt;
+#include &lt;boost/thread.hpp&gt;
+#include &lt;pcl/features/normal_3d_omp.h&gt;
+typedef pcl::PointXYZ PointT; //重定义pcl::PointXYZ为PointT
+typedef pcl::PointCloud&lt;PointT&gt; PointCloud; //重定义pcl::PointCloud&lt;PointT&gt;为PointCloud
+//点云配准类型
+typedef pcl::IterativeClosestPoint&lt;pcl::PointXYZ, pcl::PointXYZ&gt; ICP;
+typedef pcl::NormalDistributionsTransform&lt;pcl::PointXYZ, pcl::PointXYZ&gt; NDT;
+typedef pcl::SampleConsensusInitialAlignment&lt;pcl::PointXYZ, pcl::PointXYZ, pcl::FPFHSignature33&gt; SAC_IA;
+typedef pcl::GeneralizedIterativeClosestPoint&lt;pcl::PointXYZ, pcl::PointXYZ&gt; GICP;
+//FPFH特征
+typedef pcl::FPFHEstimationOMP&lt;pcl::PointXYZ, pcl::Normal, pcl::FPFHSignature33&gt; FPFHEstimation;
+typedef pcl::PointCloud&lt;pcl::FPFHSignature33&gt; FPFH;
+//法线估计
+typedef pcl::NormalEstimationOMP&lt;pcl::PointXYZ, pcl::Normal&gt; NormalEstimation;
+typedef pcl::PointCloud&lt;pcl::Normal&gt; Normal;
+typedef pcl::search::KdTree&lt;pcl::PointXYZ&gt; KdTreeT;
+
+//点云可视化
+void visualize_pcd(PointCloud::Ptr pcd_src,
+    PointCloud::Ptr pcd_tgt,
+    PointCloud::Ptr pcd_final)
+{
+    pcl::visualization::PCLVisualizer viewer("registration Viewer");
+    // 设置背景
+    viewer.setBackgroundColor(1, 1, 1);
+    // 添加坐标轴到可视化对象，参数指定轴的大小（长度），这里设置为1.0单位长度
+    viewer.addCoordinateSystem(0.5);
+    // 设置相机位置和方向
+    viewer.initCameraParameters();
+    pcl::visualization::PointCloudColorHandlerCustom&lt;PointT&gt; src_h(pcd_src, 0, 255, 0);
+    pcl::visualization::PointCloudColorHandlerCustom&lt;PointT&gt; tgt_h(pcd_tgt, 255, 0, 0);
+    pcl::visualization::PointCloudColorHandlerCustom&lt;PointT&gt; final_h(pcd_final, 0, 0, 255);
+    //viewer.addPointCloud(pcd_src, src_h, "source cloud");    //source绿色
+    viewer.addPointCloud(pcd_tgt, tgt_h, "tgt cloud");     //target红色
+    viewer.addPointCloud (pcd_final, final_h, "final cloud");  //final蓝色
+
+    while (!viewer.wasStopped())
+    {
+        viewer.spinOnce(100);
+        boost::this_thread::sleep(boost::posix_time::microseconds(1000));
+    }
+}
+
+void printinfo(Eigen::Matrix4f icp_trans, Eigen::Matrix3f rotation, 
+    Eigen::Vector3f translation, Eigen::Vector3f euler_angles_deg,
+    Eigen::Quaternionf quaternion)
+{
+    cout.setf(ios::fixed);
+    cout.precision(5);
+    cout &lt;&lt; endl &lt;&lt; "Transformation matrix:" &lt;&lt; endl &lt;&lt; icp_trans &lt;&lt; endl;//输出变换矩阵
+    cout &lt;&lt; endl &lt;&lt; "Rotation matrix:" &lt;&lt; endl &lt;&lt; rotation &lt;&lt; endl;
+    cout &lt;&lt; endl &lt;&lt; "Translation vector:" &lt;&lt; endl &lt;&lt; translation &lt;&lt; endl;
+    cout &lt;&lt; endl &lt;&lt; "Euler Angle:" &lt;&lt; endl;
+    cout &lt;&lt; endl &lt;&lt; "roll(x):" &lt;&lt; euler_angles_deg[2] &lt;&lt; endl;
+    cout &lt;&lt; endl &lt;&lt; "pitch(y):" &lt;&lt; euler_angles_deg[1] &lt;&lt; endl;
+    cout &lt;&lt; endl &lt;&lt; "yaw(z):" &lt;&lt; euler_angles_deg[0] &lt;&lt; endl;
+    // 输出四元数,由于欧拉角时常出现万向节，所以可以使用四元数来表示旋转，这样更精确
+    cout &lt;&lt; endl &lt;&lt;"Rotation quaternion: " &lt;&lt; endl
+        &lt;&lt; "w = " &lt;&lt; quaternion.w() &lt;&lt; endl
+        &lt;&lt; ", x = " &lt;&lt; quaternion.x() &lt;&lt; endl
+        &lt;&lt; ", y = " &lt;&lt; quaternion.y() &lt;&lt; endl
+        &lt;&lt; ", z = " &lt;&lt; quaternion.z() &lt;&lt; endl;
+}
+
+void downsampling(PointCloud::Ptr cloud_src_o, PointCloud::Ptr cloud_tgt_o,
+    pcl::VoxelGrid&lt;pcl::PointXYZ&gt;::Ptr voxel_grid)
+{
+    float leaf = 0.005f;
+    voxel_grid-&gt;setLeafSize(leaf, leaf, leaf); // 示例叶子大小
+    voxel_grid-&gt;setInputCloud(cloud_src_o);
+    voxel_grid-&gt;filter(*cloud_src_o);
+    voxel_grid-&gt;setInputCloud(cloud_tgt_o);
+    voxel_grid-&gt;filter(*cloud_tgt_o);
+}
+void normalestimation(NormalEstimation ne, Normal::Ptr src_normals, 
+    Normal::Ptr tgt_normals, KdTreeT::Ptr tree, 
+    PointCloud::Ptr cloud_src_o, PointCloud::Ptr cloud_tgt_o)
+{
+     创建一个NormalEstimationOMP对象,进行法线计算;
+    ne.setSearchMethod(tree);
+    ne.setKSearch(20);
+    ne.setInputCloud(cloud_src_o);
+    ne.compute(*src_normals);
+    ne.setInputCloud(cloud_tgt_o);
+    ne.compute(*tgt_normals);
+    cout &lt;&lt; "原点云法线计算完成" &lt;&lt; endl &lt;&lt;*src_normals &lt;&lt; endl;
+    cout &lt;&lt; "目标点云法线计算完成" &lt;&lt; endl &lt;&lt; *tgt_normals &lt;&lt; endl;
+}
+
+void fpfh_features(FPFHEstimation fpfh, FPFH::Ptr src_fpfhs,
+    FPFH::Ptr tgt_fpfhs, PointCloud::Ptr cloud_src_o, 
+    PointCloud::Ptr cloud_tgt_o, KdTreeT::Ptr tree, 
+    Normal::Ptr src_normals, Normal::Ptr tgt_normals)
+{
+    fpfh.setSearchMethod(tree);
+    fpfh.setRadiusSearch(0.05); // Use a radius search instead of a KdTree search
+    fpfh.setInputCloud(cloud_src_o);
+    fpfh.setInputNormals(src_normals);
+    fpfh.compute(*src_fpfhs);
+    fpfh.setInputCloud(cloud_tgt_o);
+    fpfh.setInputNormals(tgt_normals);
+    fpfh.compute(*tgt_fpfhs);
+    cout &lt;&lt; "原点云特征计算完成" &lt;&lt; *src_fpfhs &lt;&lt; endl; 
+    cout &lt;&lt; "目标点云特征计算完成" &lt;&lt; *tgt_fpfhs &lt;&lt; endl;
+}
+
+GICP&amp; gicp_registration(GICP&amp; gicp, PointCloud&amp; final_cloud,
+    PointCloud::Ptr cloud_src_o, PointCloud::Ptr cloud_tgt_o)
+{
+    gicp.setInputSource(cloud_src_o);
+    gicp.setInputTarget(cloud_tgt_o);
+    // 配准时最大迭代次数
+    gicp.setMaximumIterations(50);
+    // 两次变化矩阵之间的差异小于这个阈值时，就认为已经收敛，停止迭代
+    gicp.setTransformationEpsilon(1e-6);
+    // 对应点之间的最大距离
+    gicp.setMaxCorrespondenceDistance(0.05);
+    // 采用随机采样一致性方法进行配准
+    gicp.setRANSACOutlierRejectionThreshold(1.5);
+    // 最小内点比例。在RANSAC配准方法中，当内点的比例小于此值时，认为配准失败。
+    gicp.setRANSACIterations(20);
+    // 执行配准，并将结果存储在Final中
+    gicp.align(final_cloud);
+    return gicp;
+
+}
+SAC_IA&amp; sacia_registration(SAC_IA &amp; sac_ia, PointCloud&amp; final_cloud,
+    PointCloud::Ptr cloud_src_o, PointCloud::Ptr cloud_tgt_o,
+    FPFH::Ptr &amp; src_fpfhs, FPFH::Ptr&amp; tgt_fpfhs)
+{
+    sac_ia.setInputSource(cloud_src_o);
+    sac_ia.setSourceFeatures(src_fpfhs);
+    sac_ia.setInputTarget(cloud_tgt_o);
+    sac_ia.setTargetFeatures(tgt_fpfhs);
+    // 设置SAC-IA配准的参数
+    sac_ia.setMinSampleDistance(0.05f);
+    sac_ia.setMaxCorrespondenceDistance(0.01f);
+    sac_ia.setMaximumIterations(500);
+    // 创建一个空的PointCloud对象来接收结果
+    pcl::PointCloud&lt;pcl::PointXYZ&gt; final_registration;
+    // 执行配准，并将结果存储在final_registration中
+    sac_ia.align(final_registration);
+    return sac_ia;
+}
+NDT&amp; ndt_registration(NDT &amp; ndt, PointCloud&amp; final_cloud,
+    PointCloud::Ptr cloud_src_o, PointCloud::Ptr cloud_tgt_o)
+{
+    // 配置NDT
+    ndt.setTransformationEpsilon(0.1);
+    ndt.setStepSize(0.5);
+    ndt.setResolution(2.0);
+    ndt.setMaximumIterations(20);
+    ndt.setInputSource(cloud_src_o);
+    ndt.setInputTarget(cloud_tgt_o);
+    ndt.align(final_cloud);
+    return ndt;
+}
+
+ICP&amp; icp_registration(ICP &amp; icp, PointCloud &amp; final_cloud, 
+    PointCloud::Ptr cloud_src_o, PointCloud::Ptr cloud_tgt_o)
+{
+    icp.setMaximumIterations(50);
+    // 两次变化矩阵之间的差值
+    icp.setTransformationEpsilon(1e-10);
+    // 均方误差
+    icp.setEuclideanFitnessEpsilon(0.01);
+    icp.setInputSource(cloud_src_o);//录入source点云
+    icp.setInputTarget(cloud_tgt_o);//录入target点云
+    icp.align(final_cloud);//最终配准结果
+    return icp;
+}
+int main(int argc, char** argv)
+{
+    //加载点云文件
+    PointCloud::Ptr cloud_src_o(new pcl::PointCloud&lt;pcl::PointXYZ&gt;);//原点云，待配准
+    pcl::io::loadPLYFile("ply/bun_zipper.ply", *cloud_src_o);
+    PointCloud::Ptr cloud_tgt_o(new pcl::PointCloud&lt;pcl::PointXYZ&gt;);//目标点云
+    pcl::io::loadPLYFile("ply/bun_zipper2.ply", *cloud_tgt_o);
+    clock_t start = clock();
+
+    //下采样
+    pcl::VoxelGrid&lt;pcl::PointXYZ&gt;::Ptr voxel_grid(new pcl::VoxelGrid&lt;pcl::PointXYZ&gt;);
+    downsampling(cloud_src_o, cloud_tgt_o, voxel_grid);
+
+
+     创建一个NormalEstimationOMP对象,进行法线计算
+    NormalEstimation ne;
+    Normal::Ptr src_normals(new pcl::PointCloud&lt;pcl::Normal&gt;);
+    Normal::Ptr tgt_normals(new pcl::PointCloud&lt;pcl::Normal&gt;);
+    KdTreeT::Ptr tree(new pcl::search::KdTree&lt;pcl::PointXYZ&gt;());
+    normalestimation(ne, src_normals, tgt_normals, tree, cloud_src_o, cloud_tgt_o);
+    
+    //计算FPFH特征
+    /*FPFHEstimation fpfh;
+    FPFH::Ptr src_fpfhs(new pcl::PointCloud&lt;pcl::FPFHSignature33&gt;());
+    FPFH::Ptr tgt_fpfhs(new pcl::PointCloud&lt;pcl::FPFHSignature33&gt;());
+    fpfh_features(fpfh, src_fpfhs, tgt_fpfhs, cloud_src_o, cloud_tgt_o, tree, src_normals, tgt_normals);*/
+
+
+    // 点云配准
+    PointCloud::Ptr icp_result(new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+    PointCloud final_cloud;
+    ICP icp;
+    ICP &amp; reg_p = icp_registration(icp, final_cloud, cloud_src_o, cloud_tgt_o);
+
+    /*NDT ndt;
+    NDT &amp; reg_p = ndt_registration(ndt, final_cloud, cloud_src_o, cloud_tgt_o);*/
+
+    /*GICP gicp;
+    GICP&amp; reg_p = gicp_registration(gicp, final_cloud, cloud_src_o, cloud_tgt_o);*/
+
+    //SAC_IA sac_ia;
+    //SAC_IA&amp; reg_p = sacia_registration(sac_ia, final_cloud, cloud_src_o, cloud_tgt_o, src_fpfhs, tgt_fpfhs);
+    clock_t end = clock();
+    cout &lt;&lt; "total time: " &lt;&lt; (double)(end - start) / (double)CLOCKS_PER_SEC &lt;&lt; " s" &lt;&lt; endl;//输出配准所用时间
+    cout &lt;&lt; "ICP has converged:" &lt;&lt; reg_p.hasConverged() &lt;&lt; " score: " &lt;&lt; reg_p.getFitnessScore() &lt;&lt; std::endl;
+    
+    Eigen::Matrix4f reg_p_trans;
+    // 变换矩阵
+    reg_p_trans = reg_p.getFinalTransformation();
+    // 平移向量
+    Eigen::Vector3f translation = reg_p_trans.block&lt;3, 1&gt;(0, 3);
+    // 旋转矩阵
+    Eigen::Matrix3f rotation = reg_p_trans.block&lt;3, 3&gt;(0, 0);
+    // 转换为四元数
+    Eigen::Quaternionf quaternion(rotation);
+    // 使用四元数重新计算欧拉角
+    Eigen::Vector3f euler_angles_rad = quaternion.toRotationMatrix().eulerAngles(2, 1, 0);
+    
+     获取欧拉角（弧度）
+    //Eigen::Vector3f euler_angles_rad = rotation.eulerAngles(0, 1, 2);
+    // 将弧度转换为角度
+    Eigen::Vector3f euler_angles_deg = euler_angles_rad * 180.0 / M_PI;
+    printinfo(reg_p_trans, rotation, translation, euler_angles_deg, quaternion);
+    //使用创建的变换对未过滤的输入点云进行变换
+    pcl::transformPointCloud(*cloud_src_o, *icp_result, reg_p_trans);
+
+    visualize_pcd(cloud_src_o, cloud_tgt_o, icp_result);
+    return (0);
+}
+</code></pre>
+<p>这里面有四种点云配准方法，ICP，NDT，GICP，SAC-IA，其中使用SAC-IA的时候要把fpfh计算的代码解开注释，其他算法使用的时候不需要解开fpfh计算的代码；提醒下，fpfh和SAC-IA计算较为缓慢，出结果需要四五分钟</p>
+<p>这份配准所需点云文件链接：</p>
+<p>链接：https://pan.baidu.com/s/1QduGSfYcMN2MLRa08e0eSg <br/> 提取码：wstc </p>
+<p>六、保存配置</p>
+<p>为了在以后新建项目时不重复进行第三部分的配置，可以保存属性表；点击visual studio2022的视图下的其他窗口，找到属性管理器，点击</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/d85f9da1f29e4fffb427c744ad31dae0.png"/></p>
+<p>下方会出现属性管理器的字样，点击</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/abfd81f63eaa400bb09fbf61e2be4a55.png"/></p>
+<p>然后右键Debug | x64，点击添加新项目属性表</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/b3d8ca25bc3b44f0a9390dea2274b6d5.png"/></p>
+<p>随便命个名，点击添加，我命名为PCL.props</p>
+<p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/direct/7d7079a9b484471ba08de409ded760a3.png"/></p>
+<p>这里就会出现PCL的属性表，双击之后，重复，第三部分的配置即可，这个属性表会保存在和你的cpp文件的同级目录下</p>
+<p>然后你就可以新建一个项目，在新项目中也找到Debug | x64，右键添加现有属性表，找到我们刚才配置的PCL.props，就可以导入我们刚才的配置了</p>
+<p>六、未来如果你要用PCL做某些大型项目，可能会遇到 fatal error C1128: 节数超过对象文件格式限制: 请使用 /bigobj 进行编译，这种问题，解决方法：</p>
+<p>打开该项目的“属性页”对话框，单击“C/C++”项，单击“命令行”属性页，在“附加选项”框中键入编译器选项,添加 /bigobj，再次编译即可。</p>
+<p>在 Visual Studio 中使用 <code>/bigobj</code> 编译选项的主要好处是允许生成更大的对象文件。这是通过扩展 COFF（Common Object File Format）的限制来实现的。以下是 <code>/bigobj</code> 选项的一些具体好处：</p>
+<ol><li> <p><strong>增加节的数量限制：</strong> 正常情况下，COFF 格式的对象文件有限制，例如节的数量不能超过 2^16-1（65535）。使用 <code>/bigobj</code> 可以将这个限制提高到 2^32-1（约 4.29 亿），这对于包含大量代码的大型项目非常有用。</p> </li><li> <p><strong>提供更多的符号：</strong> 对于有大量符号（例如函数、变量、模板实例化）的代码，<code>/bigobj</code> 也提供了更多的符号支持。</p> </li><li> <p><strong>处理复杂的模板：</strong> 使用大量模板特化和模板元编程的 C++ 代码可能会生成非常大的对象文件。<code>/bigobj</code> 让编译器能够处理这些复杂的模板情况。</p> </li><li> <p><strong>适用于大型项目：</strong> 对于非常大的项目，尤其是那些有大量源代码文件或者是由多个库组合而成的项目，使用 <code>/bigobj</code> 选项可以避免在编译过程中出现对象文件格式限制的错误。</p> </li></ol>
+<p>使用 <code>/bigobj</code> 选项没有显著的缺点，除了可能会增加编译后的对象文件大小。然而，它确实是解决某些大型或复杂项目导致的对象文件格式限制问题的必要手段。如果你的项目没有遇到相关的编译限制问题，那么通常不需要使用这个选项。</p>
+<p><a href="https://blog.csdn.net/qq_58060770/article/details/136061217" title="PCL使用SAC-IA \ICP\NDT\GICP进行点云配准-CSDN博客">PCL使用SAC-IA \ICP\NDT\GICP进行点云配准-CSDN博客</a></p>
+</div>
+</div>
+<div id="treeSkill"></div>
+</article>
+<script>
+  $(function() {
+    setTimeout(function () {
+      var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+      if (mathcodeList.length > 0) {
+        for (let i = 0; i < mathcodeList.length; i++) {
+          if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+            var alt = mathcodeList[i].alt;
+            alt = '\\(' + alt + '\\)';
+            var curSpan = $('<span class="img-codecogs"></span>');
+            curSpan.text(alt);
+            $(mathcodeList[i]).before(curSpan);
+            $(mathcodeList[i]).remove();
+          }
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+      }
+    }, 1000)
+  });
+</script>
+</div></html>
