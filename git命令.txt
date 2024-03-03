@@ -1,4 +1,4 @@
-
+git init //初始化仓库
 git config --global --list
 查看全局配置
 user.email=1710745401@qq.com
