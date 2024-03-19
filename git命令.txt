@@ -1,3 +1,4 @@
+github项目页面按住.键可以跳转至类似VS的页面中，查看项目结构
 git init //初始化仓库
 git config --global --list
 查看全局配置
