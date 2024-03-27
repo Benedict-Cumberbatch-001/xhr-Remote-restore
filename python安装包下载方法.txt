@@ -60,3 +60,7 @@ pip install --
 《./》表示当前级目录（可以省略）
 《../》表示上层目录
 《../../》表示上上层目录
+2->三种路径的输入方式
+path1=c:/Users/Hjx/Desktop/text.txt    #单个反斜杠
+path2='c:llusersllHjxliDesktoplltext.txt   # 两个斜杠:\\(第一个\是转义符)
+path3=r'c:\Users\Hjx\Desktop\text.txt'  #r用于防止字符转义
