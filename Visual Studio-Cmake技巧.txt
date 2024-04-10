@@ -29,6 +29,6 @@ cmake --build . --config Debug --target install **/这个命令的意思是在�
 使用camke-Gui进行编译：
 1）CMAKE_INSTALL_PREFIX要填写，选择一个方便的目录。这是构建后复制二进制发行版集的位置。
 2）填写include目录和lib目录，可以自己新增XXX_ROOT目录：包含include和lib目录
-3）有时候找不到XXX_ROOT可能是因为CMakeLists.txt中find_package(Xerces QUIT 改为REQUIRED
+3）有时候找不到XXX_ROOT可能是因为CMakeLists.txt中find_package(Xerces QUIT 改为REQUIRED）
 
 3>下载C++开源库一般去https://sourceforge.net/，然后其中有二进制文件，就是别人编译好的，其中的include和lib都包含在内，但是需要注意VS版本可能不对应。自己编译后install的一般比较合适。
