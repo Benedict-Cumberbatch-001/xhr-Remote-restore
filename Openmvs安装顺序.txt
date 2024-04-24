@@ -1,0 +1,38 @@
+Cmake安装顺序
+
+把VS改成英文，
+查看系统环境变量没有vcpkg避免干扰
+先试试官方文件好不好使
+
+Openmvs/IO/CMakeLists.txt 修改QUIET为REQUIRED
+IO/Common/Types.inl  搜索ZSTD 把boost版本106900更改为109000
+Cuda设置为不安装
+
+BOOST_ROOT     boost 1.72
+EIGEN                 include/eigen3
+OPENCV_DIR      v16/lib
+ZLIB_ROOT         zlib
+PNG_ROOT         png
+JPEG_ROOT         jpeg
+TIFF_ROOT          tiff 
+CGAL_DIR            lib/cmake/CGAL
+GMP INCLUDE DIR                Include
+RELEASE DIR      libgmb-10.lib
+
+MPFR   INCLUDE DIR          Include
+RELEASE DIR      libgmbfr_4.lib
+
+VCG DIR                   vcg.lib 2020.09
+
+附加依赖项删除boost iostream和boost program
+
+遇到问题：
+VS编译报错 LNK2019 _imp_gmpq_init   ///将libgmp-10.lib libmpfr-4.lib添加到附加依赖项
+
+error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MT_StaticRelease”不匹配值“MD_DynamicRelease”     ///（引用的是静态库，但设置成动态库了）在对应项目上鼠标右键->属性 -> C/C++ -> 代码生成 -> 运行库多线程(/MT) ：
+对应的是MD_StaticRelease
+多线程(/MTd)：对应的是MD_StaticDebug
+多线程Dll (/MD) ：对应的是MD_DynamicRelease
+多线程调试Dll (/MDd) ：对应的是MD_DynamicDebug
+
+No CUDA toolset found解决方法///一般是因为安装CUDA时没有安装对应的Visual Studio Integration缺失
