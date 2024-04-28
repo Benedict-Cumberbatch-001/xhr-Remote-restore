@@ -1,1 +1,0 @@
-1.在提交更新的pc端点击Trigger GetUpdates-->在拉取更新的pc端点击 Disable Sync (Clear Data)--> 点击Request Start 

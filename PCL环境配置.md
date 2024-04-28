@@ -1,26 +1,33 @@
-CUDA环境变量
+### CUDA环境变量
+```Shell
 D:\CUDA11.2\NVIDIA GPU Computing Toolkit\CUDA\v11.2\bin;D:\CUDA11.2\NVIDIA GPU Computing Toolkit\CUDA\v11.2\libnvvp;D:\Program file\NVIDIA GPU Computing Toolkit\CUDA\v11.2\lib\x64;D:\Program file\NVIDIA GPU Computing Toolkit\CUDA\v11.2\include;D:\Program file\NVIDIA GPU Computing Toolkit\CUDA\v11.2\extras\CUPTI\lib64
-
-NVDIA环境变量
+```
+### NVDIA环境变量
+```Shell
 C:\Program Files\NVIDIA Corporation\NVSMI;C:\Program Files\NVIDIA Corporation\Nsight Compute 2020.3.0\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common
-
-Management Engine环境变量
+```
+### Management Engine环境变量
+```Shell
 C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT
-
-Matlab环境变量
+```
+### Matlab环境变量
+```Shell
 D:\Matlab2021a\runtime\win64;D:\Matlab2021a\bin;D:\Matlab2021a\polyspace\bin
-
-WindowsPowerShell环境变量
+```
+### WindowsPowerShell环境变量
+```Shell
 C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Windows\system32
+```
 
-
-ZED环境变量
+### ZED环境变量
+```Shell
 C:\Program Files (x86)\ZED SDK\dependencies\freeglut_2.8\x64
 C:\Program Files (x86)\ZED SDK\dependencies\glew-1.12.0\x64
 C:\Program Files (x86)\ZED SDK\dependencies\opencv_3.1.0\x64
 C:\Program Files (x86)\ZED SDK\bin
-
-PCL环境变量
+```
+### PCL环境变量
+```Shell
 d:\PCL 1.14.0\bin\
 d:\PCL 1.14.0\3rdParty\VTK\bin
 D:\PCL 1.14.0\3rdParty\OpenNI2\Tools
@@ -43,13 +50,17 @@ D:\PCL 1.14.0\lib
 D:\PCL 1.14.0\3rdParty\VTK\lib
 D:\PCL 1.14.0\3rdParty\Qhull\lib
 D:\PCL 1.14.0\3rdParty\OpenNI2\Lib
-预处理器
+```
+### 预处理器
+```
 _DEBUG
 _CONSOLE
 BOOST_USE_WINDOWS_H
 NOMINMAX
 _CRT_SECURE_NO_DEPRECATE
-连接器输入
+```
+### 连接器输入
+```
 pcl_commond.lib
 pcl_featuresd.lib
 pcl_filtersd.lib
@@ -212,3 +223,4 @@ vtkViewsCore-9.3-gd.lib
 vtkViewsInfovis-9.3-gd.lib
 vtkWrappingTools-9.3-gd.lib
 vtkzlib-9.3-gd.lib
+```

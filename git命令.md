@@ -1,83 +1,80 @@
-1.github项目页面按住.键可以跳转至类似VS的页面中，查看项目结构
+## Git命令
+1. `github`项目页面按住.键可以跳转至类似VS的页面中，查看项目结构
 
-2.git 清屏的方式：快捷键 “Ctrl + L ”或者命令“clear”
+2. `git` 清屏的方式：快捷键 `Ctrl + L`或者命令`clear`
 
-3.git init //初始化仓库
+3. `git init` //初始化仓库
 
-4.git config --global --list //查看全局配置
-
+4. `git config --global --list` //查看全局配置
+```shell
 user.email=1710745401@qq.com
 user.name=xuhaoran
 http.proxy=http://127.0.0.1:10809
-//
+```
+5. `git config --global --unset http.proxy`//取消http的现有代理
 
-5.git config --global --unset http.proxy    //取消http的现有代理
+6. `git config --global http.proxy 127.0.0.1:10809`//设置中查看自己电脑的端口，然后使用系统代理设置
+7. `git config --global http.proxy` 代理地址:端口号   //设置http代理
 
-6.git config --global http.proxy 127.0.0.1:10809 //设置中查看自己电脑的端口，然后使用系统代理设置
-git config --global http.proxy 代理地址:端口号   //设置http代理
+8. `v2rayN`中的监听端口默认设置的是`10808`，这时候系统设置的`http`代理端口是`10809`而且是默认的，系统的端口会比监听端口的数值多1。全局代理的配置文件`.gitconfig`通常在：`C:\Users\你的用户名\.gitconfig`。当`.gitconfig`中的设置的代理端口与系统设置里面的代理端口不一样的时候，git就会出错
 
-//v2rayN中的监听端口默认设置的是10808，这时候系统设置的http代理端口是10809而且是默认的，系统的端口会比监听端口的数值多1。全局代理的配置文件.gitconfig通常在：“ C:\Users\你的用户名\.gitconfig”。当.gitconfig中的设置的代理端口与系统设置里面的代理端口不一样的时候，git就会出错
+9. `git config --global --get http.proxy`//查看当前代理设置
+//当设置了系统代理，则必须开启`vpn`才能`push`到`gitee`和`GitHub`
+//如果未设置系统代理，只能上传到`gitee`，而不能上传到`github`
 
-7.git config --global --get http.proxy    //查看当前代理设置
-//当设置了系统代理，则必须开启vpn才能push到gitee和GitHub
-//如果未设置系统代理，只能上传到gitee，而不能上传到github
+10. `git log --pretty=oneline`//在一行显示内容，只显示哈希码和-m
 
-8.git log --pretty=oneline //在一行显示内容，只显示哈希码和-m
+11. `git log --oneline` //比上面的更简洁，显示部分哈希码和-m
 
-9.git log --oneline //比上面的更简洁，显示部分哈希码和-m
-
-10.git reflog //显示部分哈希码和-m以及版本步
+12. `git reflog` //显示部分哈希码和-m以及版本步
 修改完某个文件应当先添加add，
-git add .  //命令是一次性添加全部修改后的文件
-注意看git status的状态，红色代表要添加，绿色代表要提交
+13. `git add .`  //命令是一次性添加全部修改后的文件
+注意看`git status`的状态，红色代表要添加，绿色代表要提交
 
-11.//建立远程库
-在github上 点击new repository，填写表单
-码云的私密仓库不收费，GitHub收费
+11. //建立远程库
+在`github`上 点击`new repository`，填写表单
+码云的私密仓库不收费，`GitHub`收费
 
-12.git remote -v //查看当前的本地库储存的远程库地址
+12. `git remote -v` //查看当前的本地库储存的远程库地址
 
-13.git remote add 地址名命 http://.......... //添加远程库地址
+13. `git remote add` 地址名命 http://.......... //添加远程库地址
 
-14.git push 地址名 分支 //推送本地仓库到远程仓库
+14. `git push` 地址名 分支 //推送本地仓库到远程仓库
 
-15.git fetch //抓取远程库，下载到本地，但不会更改本地工作区的文件
+15. `git fetch` //抓取远程库，下载到本地，但不会更改本地工作区的文件
 
-16.git checkout 仓库名/分支 //查看下载的远程仓库内容
+16. `git checkout` 仓库名/分支 //查看下载的远程仓库内容
 
-17.git pull 远程库名 分支名 //等于fetch+merge，直接合并项目
-
-18.git remote remove <别名> //移除远程仓库
+17. `git pull` 远程库名 分支名 //等于`fetch+merge`，直接合并项目
+ 
+18. `git remote remove <别名>` //移除远程仓库
 
 如果要删除或者清空分支，需要先删除或清空后提交到本地库，然后再push到远程库
 
-19.git reset --hard+哈希值 //恢复历史版本
+19. `git reset --hard+哈希值` //恢复历史版本
 
-20.git ls-files //查看本地仓内的文件
+20. `git ls-files` //查看本地仓内的文件
 
-21.git rm --cached -r . 命令的含义如下：
+21. g`it rm --cached -r .` 命令的含义如下：
 
-	git rm: 这是 Git 命令，用于从版本控制中删除文件。
-	--cached: 这个选项告诉 Git 只删除文件的跟踪记录，但保留实际文件在工作目录中。
-	-r: 这个选项表示递归地删除文件夹及其内容。
-	.: 这个点表示当前目录。
-	综合起来，git rm --cached -r . 命令的作用是将当前目录下的所有文件和文件夹从版本控制中移除，但保留它们在工作目录中的实际副本。
+	`git rm`: 这是 Git 命令，用于从版本控制中删除文件。
+	`--cached`: 这个选项告诉 Git 只删除文件的跟踪记录，但保留实际文件在工作目录中。
+	`-r`: 这个选项表示递归地删除文件夹及其内容。
+	`.`: 这个点表示当前目录。
+	综合起来，`git rm --cached -r .` 命令的作用是将当前目录下的所有文件和文件夹从版本控制中移除，但保留它们在工作目录中的实际副本。
 
 	这个命令通常用于不再需要跟踪的文件或文件夹，但您仍希望保留它们在您的本地环境中。一旦您执行了这个命令并提交了更改，其他协作者在拉取您的更改时将不再看到这些文件或文件夹，但您的本地副本仍然存在于工作目录中。
 
-22.git log 命令时，命令末尾出现（end）只需要输入q即可解决
+22. `git log` 命令时，命令末尾出现（end）只需要输入`q`即可解决
 
-23.//解决冲突的方式
+23. //解决冲突的方式
 当两个不同的人修改了同一个文件的同一处，且修改不同时会出现冲突
 <<<<<<< HEAD
 // 你的更改
 =======
 // 远程仓库的更改
->>>>>>> 2426fcf205c1ed863d83a40f4d6672b2e3a63920
-
-
+\>>>>>>> 2426fcf205c1ed863d83a40f4d6672b2e3a63920
 在 <<<<<<< HEAD 和 ======= 之间是你本地分支的更改，在 ======= 和 >>>>>>> 之间是远程分支的更改。你需要决定要保留哪个版本或者进行修改以合并两者。
-
 手动编辑文件，删除不需要的标记并根据需要修改内容，以解决冲突。例如，你可以选择保留本地更改，删除冲突标记后的内容，然后保存文件。
 
 在终端中运行以下命令来标记冲突已解决：
@@ -87,15 +84,13 @@ git push fp master
 //然而对于一些非代码或者txt类文件，只能从远程库下载并替换本地库文件，然后再次提交。
 这时候git就会认为你遵从了远程库的提交
 
-24.git pull origin master --force
-这将会强制拉取origin远程仓库的master分支并覆盖本地分支。
+24. `git pull origin master --force`这将会强制拉取origin远程仓库的master分支并覆盖本地分支。
 
-25.git push origin master --force
-这将会强制将本地分支的更改推送到origin远程仓库的master分支，覆盖远程分支的历史记录。
+25. `git push origin master --force`这将会强制将本地分支的更改推送到origin远程仓库的master分支，覆盖远程分支的历史记录。
 
 
 
-
+```shell
 
 $ git help -a
 See 'git help <command>' to read about a specific subcommand
@@ -281,6 +276,6 @@ External commands
    flow
    lfs
    shell
-
+```
 
 
