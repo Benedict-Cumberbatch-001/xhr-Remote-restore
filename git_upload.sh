@@ -5,7 +5,7 @@ cd E:/xhr-Remote-restore
 
 # 执行 Git 添加、提交和推送
 git add .
-git commit -m "Auto commit"
+git commit -m "Auto commit by git_upload.sh"
 git push origin master
 
 # 输出一条消息表示操作完成
