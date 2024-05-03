@@ -46,8 +46,9 @@ http.proxy=http://127.0.0.1:10809
 16. `git checkout` 仓库名/分支 //查看下载的远程仓库内容
 
 17. `git pull` 远程库名 分支名 //等于`fetch+merge`，直接合并项目
+18. `git remote rename <old-name> <new-name>`要给远程仓库改名，你需要使用Git的git remote rename命令。
  
-18. `git remote remove <别名>` //移除远程仓库
+19. `git remote remove <别名>` //移除远程仓库
 
 如果要删除或者清空分支，需要先删除或清空后提交到本地库，然后再push到远程库
 
