@@ -10,3 +10,5 @@ git push origin master
 
 # 输出一条消息表示操作完成
 echo "Git upload complete."
+
+read -p "Press any key to continue..."
