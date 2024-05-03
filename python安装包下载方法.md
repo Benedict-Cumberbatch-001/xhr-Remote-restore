@@ -56,6 +56,9 @@ pip install --
 ### 生成requirements.txt的依赖项：
 1. 在当前项目的终端/终端进入当前项目文件夹，
 2. 运行`pip freeze > requirements.txt`
+3. 或者安装`pip install pipreqs`,使用命令`pipreqs /path/to/your/python/file.py`生成指定 `Python` 文件所需的 `requirements.txt` 文件。
+4. 使用命令`pipreqs .`生成当前目录下的所需的 `requirements.txt` 文件。
+5. 使用`pipreqs . --force`强制覆盖之前的`requirements.txt` 文件。
 
 ### 相对路径/绝对路径
 在py文件中，经常涉及到相对路径和绝对路径，绝对路径要从盘符写起，且斜杠要用双反斜杠表示\\转义字符

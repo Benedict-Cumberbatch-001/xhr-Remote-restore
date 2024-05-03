@@ -1,19 +1,20 @@
 # Colmap使用
 1. 新建文件夹，目录结构：
 toy/
-    images/
-        toy1.jpg;
-        toy2.jpg;
-        ....
-    sparse/
-        toy.db
-        xxx.txt
-        ...
-        xxx.ini
-        xxx.nvm
-        ...
-2. **注意一定要将储存colmap信息的文件夹名命名为**`sparse`
-3. 稀疏重建后导出为：
+&emsp;images/
+&emsp;&emsp;&emsp;toy1.jpg;
+&emsp;&emsp;&emsp;toy2.jpg;
+&emsp;&emsp;&emsp;....
+&emsp;sparse/
+&emsp;&emsp;&emsp;toy.db
+&emsp;&emsp;&emsp;xxx.txt
+&emsp;&emsp;&emsp;...
+&emsp;&emsp;&emsp;xxx.ini
+&emsp;&emsp;&emsp;xxx.nvm
+&emsp;&emsp;&emsp;...
+        
+1. **注意一定要将储存colmap信息的文件夹名命名为**`sparse`
+2. 稀疏重建后导出为：
 - Export model
 - Export model as...
 - Export model as text
@@ -27,9 +28,9 @@ InterfaceCOLMAP.exe -i d:...你的路径/toy
 - -w
 - -o
 - ....
-2. 将生成的scene.mvs拖动到`DensifyPointCloud.exe`生成稠密点云。
+1. 将生成的scene.mvs拖动到`DensifyPointCloud.exe`生成稠密点云。
 
-3. 完成后将生成的`scence_dense.mvs`拖动到`ReconstructMesh.exe`上重建网格。
-4. 完成后将生成的`scence_dense_mesh.mvs`拖动到`RefineMesh.exe`上优化网格。
-5. 完成后将生成的`scence_dense_mesh_refine.mvs`拖动到`TextureMesh.exe`上贴图。
-6. 生成的文件为`.ply`格式，使用meshlab查看。
+2. 完成后将生成的`scene_dense.mvs`拖动到`ReconstructMesh.exe`上重建网格。
+3. 完成后将生成的`scene_dense_mesh.mvs`拖动到`RefineMesh.exe`上优化网格。
+4. 完成后将生成的`scene_dense_mesh_refine.mvs`拖动到`TextureMesh.exe`上贴图。
+5. 生成的文件为`.ply`格式，使用meshlab查看。
