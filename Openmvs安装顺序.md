@@ -26,7 +26,7 @@ VCG DIR            cg.lib 2020.09
 附加依赖项删除`../boost iostream`和`../boost program`
 
 #### 遇到问题：
-- VS编译报错: `LNK2019_imp_gmpq_init` 将`libgmp-10.lib``libmpfr-4.lib`添加到附加依赖项
+- VS编译报错: `LNK2019_imp_gmpq_init` 将`libgmp-10.lib` `libmpfr-4.lib`添加到附加依赖项
 - `error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MT_StaticRelease”不匹配值“MD_DynamicRelease”` 引用的是静态库，但设置成动态库了）`在对应项目上鼠标右键`->`属性`*->*`C/C++ `->`代码生成`->`运行库多线程(/MT)`：
 对应的是`MD_StaticRelease`
 多线程(/MTd)：对应的是`MD_StaticDebug`
