@@ -33,4 +33,4 @@ InterfaceCOLMAP.exe -i d:...你的路径/toy
 2. 完成后将生成的`scene_dense.mvs`拖动到`ReconstructMesh.exe`上重建网格。
 3. 完成后将生成的`scene_dense_mesh.mvs`拖动到`RefineMesh.exe`上优化网格。
 4. 完成后将生成的`scene_dense_mesh_refine.mvs`拖动到`TextureMesh.exe`上贴图。
-5. 生成的文件为`.ply`格式，使用meshlab查看。
+5. 生成的文件为`.ply`格式，使用`meshlab`查看。
