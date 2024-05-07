@@ -1,29 +1,30 @@
 ## Cmake安装顺序
 
-把`Visual Studio`改成英文，
-查看系统环境变量没有`vcpkg`避免干扰
-先试试官方文件好不好使
+1. 把`Visual Studio`改成英文，
+2. 查看系统环境变量没有`vcpkg`避免干扰
+3. 先试试官方文件好不好使
 
-`Openmvs/IO/CMakeLists.txt` 修改`QUIET`为`REQUIRED`
+4. `Openmvs/IO/CMakeLists.txt` 修改`QUIET`为`REQUIRED`
 `IO/Common/Types.inl`  搜索`ZSTD`把`boost`版本`106900`更改为`109000`
 `CUDA`设置为不安装
 > Cmake包链接顺序：
 ```shell
 BOOST_ROOT         boost 1.72
-EIGEN              include/eigen3
-OPENCV_DIR         v16/lib
-ZLIB_ROOT          zlib
-PNG_ROOT           png
-JPEG_ROOT          jpeg
-TIFF_ROOT          tiff 
-CGAL DIR           lib/cmake/CGAL
-GMP INCLUDE DIR    Include
-RELEASE DIR        libgmb-10.lib
-MPFR INCLUDE DIR   Include
-RELEASE DIR        libgmbfr_4.lib
-VCG DIR            cg.lib 2020.09
+EIGEN              eigen/include/eigen3
+OPENCV_DIR         opencv/x64/v16/lib
+ZLIB_ROOT          zlib_x64-windows-rel
+PNG_ROOT           libpng_x64-windows-rel
+JPEG_ROOT          libjpeg_x64-windows-rel
+TIFF_ROOT          tiff_x64-windows-rel
+CGAL DIR           cgal-vs22/lib/cmake/CGAL
+GMP INCLUDE DIR    gmp/Include
+LIB RELEASE DIR    gmp/lib/gmb-10.lib
+MPFR INCLUDE DIR   gmp/Include
+LIB DIR            gmp/lib/gmbfr_4.lib
+VCG DIR            vcglib-2020.09
 ```
-附加依赖项删除`../boost iostream`和`../boost program`
+5. 附加依赖项删除`../boost iostream/...`和`../boost program/...`
+6. 编译成功以后，需要把`dll`文件复制到`exe`在的文件夹里
 
 #### 遇到问题：
 - VS编译报错: `LNK2019_imp_gmpq_init` 将`libgmp-10.lib` `libmpfr-4.lib`添加到附加依赖项
