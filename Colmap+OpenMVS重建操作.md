@@ -15,9 +15,11 @@ toy/
         
 1. **注意一定要将储存colmap信息的文件夹名命名为**`sparse`
 2. 稀疏重建后导出为：
+```
 - Export model
 - Export model as...
 - Export model as text
+```
 # Openmvs使用
 1. 将toy文件夹拖动到`InterfaceCOLMAP.exe`上打开（简单），或者使用命令
 ```
