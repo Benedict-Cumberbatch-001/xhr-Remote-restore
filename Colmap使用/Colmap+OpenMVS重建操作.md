@@ -1,5 +1,5 @@
-<meta charset="UTF-8">
 
+> **本文档的所有权和解释权归咸鱼用户`jay-eason`所有，[点击查看](https://m.tb.cn/h.g1H5nEk?tk=7skWWtFAaI4)咸鱼宝贝**  
 # 一、Colmap稀疏重建
 ## 安装Colmap
 1. 下载`Colmap`，如果不需要使用稠密重建无需下载带`CUDA`版本的（稍大），这里给一个国内下载链接：
