@@ -10,7 +10,7 @@
 > Cmake包链接顺序：
 ```shell
 BOOST_ROOT         boost 1.72
-EIGEN              eigen/include/eigen3
+EIGEN INCLUDE      eigen/include/eigen3
 OPENCV_DIR         opencv/x64/v16/lib
 ZLIB_ROOT          zlib_x64-windows-rel
 PNG_ROOT           libpng_x64-windows-rel
