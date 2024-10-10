@@ -26,7 +26,7 @@ cmake ..-G "Visual Studio 16 2019" -DCMAKE_INSTALL_PREFIX=D:\libs\path\to\xerces
 # Cmake语法
 
 
-# 新项目链接依赖库方法
+# VS新项目链接依赖库方法
 
 1. 在编译成功以后，对于以下情况：
 - 点击项目cpp中的函数不跳转
