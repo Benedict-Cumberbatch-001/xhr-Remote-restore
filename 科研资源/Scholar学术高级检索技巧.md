@@ -42,7 +42,7 @@ TI=eg
 1. 单关键词的检索
 比如我们想要查一下文章标题中出现安全行为（safety behavior）的相关研究， 那么我们在谷歌学术的检索框里边输入的检索码为 `intitle:"safety behavior"`。
 2. 多关键词的检索
-比如我们想了解一下文章标题中同时出现建筑和安全行为的相关研究，那么我们的检索码为 `intitle"(construction" AND "safety behavior")`。
+比如我们想了解一下文章标题中同时出现建筑和安全行为的相关研究，那么我们的检索码为 `intitle:("construction" AND "safety behavior")`。
 #### 检索关键词限定文章
 整体来说我们用`intext`: 来限定，其中检索码整体为`intext`:检索关键词（组），其中`intext`后边的冒号为英文字符，同时`intext`:与检索词（组）之间不存在空格。
 1. 单关键词的检索
