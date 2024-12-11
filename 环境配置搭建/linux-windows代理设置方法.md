@@ -53,6 +53,18 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/
 
 conda config --set show_channel_urls yes
 ```
+
+## Autodl的加速方法
+
+**学术加速**
+```
+#设置加速
+source /etc/network_turbo
+#取消加速
+unset http_proxy && unset https_proxy
+```
+![alt text](image.png)
+⚡**注意：autodl有一个坑，创建python!=3.8的虚拟环境的时候速度特别慢，但是3.8就极快。尽量使用跟创建的实例的环境相同的python版本**
 # Windows系统
 ## 给pip设置代理
 在C:\User\用户目录下，新建pip文件夹，然后在该文件夹下新建pip.ini文件。填写如下内容：
@@ -64,6 +76,7 @@ proxy     = http://127.0.0.1:10809
 trusted-host=pypi.tuna.tsinghua.edu.cn
 ```
 ## pip设置镜像源
+
 **临时使用**
 ```
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
@@ -85,6 +98,10 @@ python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade
 ```
 pip config set global.extra-index-url "<url1> <url2>..."
 ```
+## 删除源
+
+`pip config unset global.index-url
+`
 ## 查看pip镜像源
 ```
 pip config list
