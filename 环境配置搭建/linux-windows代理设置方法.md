@@ -64,7 +64,7 @@ source /etc/network_turbo
 unset http_proxy && unset https_proxy
 ```
 ![alt text](image.png)
-⚡**注意：autodl有一个坑，创建python!=3.8的虚拟环境的时候速度特别慢，但是3.8就极快。尽量使用跟创建的实例的环境相同的python版本**
+⚡**注意：autodl有一个坑。尽量使用3.8版本的python，如果一个版本pytorch安装不了可能是因为链接本身的原因，更换一下虚拟环境的python版本，安装不同版本的pytorch**
 # Windows系统
 ## 给pip设置代理
 在C:\User\用户目录下，新建pip文件夹，然后在该文件夹下新建pip.ini文件。填写如下内容：
