@@ -1,0 +1,56 @@
+***Instant-ngp***
+
+#提取视频帧
+python scripts/colmap2nerf.py --video_in data\nerf\chair\VID_20231121_161900.MP4 --video_fps 1 --run_colmap --aabb_scale 32 --overwrite
+
+#colmap特征匹配
+ python G:\Github_Projects\Instant-NGP-for-RTX-3000-and-4000\scripts\colmap2nerf.py --colmap_matcher exhaustive --run_colmap --aabb_scale 32 --overwrite
+
+
+***Nerfstudio***
+
+#处理输入数据
+ns-process-data {images, video} --data {DATA_PATH} --output-dir {PROCESSED_DATA_DIR}
+ns-process-data images --data data/fox/images --output-dir data/fox/colmap
+
+#训练
+ns-train nerfacto --data {PROCESSED_DATA_DIR}
+ns-train nerfacto --data data/fox/colmap --vis viewer_legacy
+
+#导出点云
+ns-export pointcloud --load-config outputs/colmap/nerfacto/2024-12-09_154059/config.yml --output-dir exports/pcd  --normal-method open3d
+
+***Gaussian Splatting***
+
+conda create -n test python=3.9 -y &&  conda activate test
+conda init bash && source /root/.bashrc
+pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu116
+pip install -r requirements.txt
+
+#训练3000步保存
+python train.py -s data/fox --save_iterations 3000
+
+
+***SuGar***
+需要先拷贝git项目
+
+python -c "import torch; print(torch.cuda.is_available())"
+
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
+
+conda install -c fvcore -c iopath -c conda-forge fvcore iopath -y && conda install pytorch3d==0.7.4 -c pytorch3d -y && conda install -c plotly plotly -y && conda install -c conda-forge rich -y && conda install -c conda-forge plyfile==0.8.1 -y
+
+
+conda install -c conda-forge jupyterlab -y && conda install -c conda-forge nodejs -y && conda install -c conda-forge ipywidgets -y
+
+pip install open3d
+pip install --upgrade PyMCubes
+
+python train_full_pipeline.py -s <path to COLMAP dataset> -r dn_consistency --high_poly True --export_obj True --gs_output_dir <path to the Gaussian Splatting output directory>
+
+python train_full_pipeline.py -s data/fox -r "dn_consistency" --low_poly True --export_obj True --gs_output_dir data/fox3000
+
+****CoTracker***
+
+python demo.py --grid_size 50
+

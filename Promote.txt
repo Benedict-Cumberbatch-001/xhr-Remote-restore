@@ -1,0 +1,25 @@
+
+由远到近：
+20：有台车，最后一站**《质量好，距离掌子面较远》
+19：台车，人物，与20相距7米**《有人物遮挡质量一般》
+18：与19同距离，《质量差》
+17：与19相距2米《有人物遮挡，部分可用》
+16：靠近掌子面的一站距离掌子面2米**《人物遮挡严重，仅掌子面可用》
+14：距离掌子面6米《质量好》
+13：掌子面1米，灯光暗，人物
+12：不完整
+11：灯光不行
+9：第一天扫描的最后一站
+                   
+
+promote：
+你是一名专业的英语论文翻译/润色师 ，我将为你提供中文，你需要将其翻译成英文。确保整体表达符合学术论文的标准，尽量使用更为专业和准确的术语。注意避免口语化表达，使用高级词汇和正式语法结构。所提供的段落是一篇【隧道】领域学术性期刊论文，准备投稿到Automation in Construction。
+
+作为在岩石力学与工程领域有丰富经验的同行评审专家，请将该文章所做工作总结成一段话，并尽量多提出一些这篇文章存在的问题。
+
+作为一名专业的英文论文语言质量评价专家，请找到该文章的语法错误，并指出其位置
+
+我正在写一篇专利的说明书，你作为一名岩石工程和计算机科学交叉学科领域的专家，需要你补充一下上面所述方法的具体操作步骤和公式
+
+https://www.sciencedirect.com/;https://www.cnki.net/;https://pdf.sciencedirectassets.com/;https://linkinghub.elsevier.com/;https://ieeexplore.ieee.org/;https://id.elsevier.com/;https://www.scopus.com/;https://jcr.clarivate.com/;https://webofscience.clarivate.cn/;https://www.qingnixueshu.top/;http://tulip.dlut.edu.cn/;https://dutgs.dlut.edu.cn/
+

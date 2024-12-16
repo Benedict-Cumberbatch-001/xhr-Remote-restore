@@ -27,13 +27,18 @@ VCG DIR            vcglib-2020.09
 ```
 1. 附加依赖项删除`../boost iostream/...`和`../boost program/...`
 2. 编译成功以后，需要把`dll`文件复制到`exe`在的文件夹里
+3. 注意：实际上`XX-LIB`是在找`.cmake`文件，`XX-INCLUDE`是在找`.h`文件
 
 #### 遇到问题：
 - VS编译报错: `LNK2019_imp_gmpq_init` 将`libgmp-10.lib` `libmpfr-4.lib`添加到附加依赖项
 - `error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MT_StaticRelease”不匹配值“MD_DynamicRelease”` 引用的是静态库，但设置成动态库了）`在对应项目上鼠标右键`->`属性`*->*`C/C++ `->`代码生成`->`运行库多线程(/MT)`：
 对应的是`MD_StaticRelease`
-多线程(/MTd)：对应的是`MD_StaticDebug`
-多线程Dll (/MD) ：对应的是`MD_DynamicRelease`
-多线程调试Dll (/MDd) ：对应的是`MD_DynamicDebug`
+多线程`(/MTd)`：对应的是`MD_StaticDebug`
+多线程`Dll (/MD)`：对应的是`MD_DynamicRelease`
+多线程调试`Dll (/MDd)`：对应的是`MD_DynamicDebug`
 
 - `No CUDA toolset found`一般是因为安装`CUDA`时没有安装对应的`Visual Studio Integration`缺失
+- `cmake`默认使用`anaconda`的`boost`库或者使用`miniconda`的`zlib`库，都必须要更改，更改方法为：
+  1. 修改`conda`的路径名，最管用
+  2. 新建环境变量放在`anaconda`上面
+  3. list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
