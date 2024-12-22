@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 进入到你的 Git 仓库目录
-cd E:/xhr-Remote-restore
+cd "$(dirname "$0")"
 
 # 执行 Git 添加、提交和推送
 git pull origin master
