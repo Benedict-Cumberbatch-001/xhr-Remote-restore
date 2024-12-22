@@ -34,7 +34,8 @@ python train.py -s data/fox --save_iterations 3000
 ***SuGar***
 需要先拷贝git项目
 
-python -c "import torch; print(torch.cuda.is_available())"
+python -c "import torch; print(torch.cuda.is_available(),torch.__version__)"
+
 
 pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
 
@@ -49,6 +50,7 @@ pip install --upgrade PyMCubes
 python train_full_pipeline.py -s <path to COLMAP dataset> -r dn_consistency --high_poly True --export_obj True --gs_output_dir <path to the Gaussian Splatting output directory>
 
 python train_full_pipeline.py -s data/fox -r "dn_consistency" --low_poly True --export_obj True --gs_output_dir data/fox3000
+python train_full_pipeline.py -s data/fox -r "dn_consistency" --high_poly True --export_obj True --gs_output_dir data/fox3000 --refinement_time "long" --eval False
 
 ****CoTracker***
 
