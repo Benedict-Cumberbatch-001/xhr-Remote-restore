@@ -21,5 +21,9 @@ promote：
 
 我正在写一篇专利的说明书，你作为一名岩石工程和计算机科学交叉学科领域的专家，需要你补充一下上面所述方法的具体操作步骤和公式
 
+对学术论文中的段落进行润色，使其符合学术风格，提升拼写和语法的正确性，增强清晰度、简洁性和整体可读性。可以要求人工智能在 Markdown 表格中列出所有修改内容及其原因。
+
+你是一名中英双语专家，对我给出的片段进行翻译，使其符合学术风格，确保拼写和语法的正确性，使翻译后的片段可直接放在发表的期刊中，具备严谨性、清晰度、简洁性和整体可读性，以下是我要翻译的片段：
+
 https://www.sciencedirect.com/;https://www.cnki.net/;https://pdf.sciencedirectassets.com/;https://linkinghub.elsevier.com/;https://ieeexplore.ieee.org/;https://id.elsevier.com/;https://www.scopus.com/;https://jcr.clarivate.com/;https://webofscience.clarivate.cn/;https://www.qingnixueshu.top/;http://tulip.dlut.edu.cn/;https://dutgs.dlut.edu.cn/
 

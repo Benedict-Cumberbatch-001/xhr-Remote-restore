@@ -1,4 +1,4 @@
-1. word引用设置为蓝色，把citaions里面的underline ...勾选上，然后设置超链接的格式，把文字设置为蓝色即可
+1. word参考文献引用设置为蓝色，把citaions里面的underline ...勾选上，然后设置超链接的格式，把文字设置为蓝色即可
 
 
 2. word的超链接域自动设置颜色，视图>新建宏>
@@ -10,5 +10,10 @@ Sub CitingColor()
         End If
     Next
 End Sub
+
+
 >>运行
 
+3.如果更新域以后，域的文本格式变了，右键点击->编辑域->点击更新时保留原格式
+
+4.WORD中ENDNOTE引用标蓝 https://blog.csdn.net/Zhao_cccc/article/details/134892586
