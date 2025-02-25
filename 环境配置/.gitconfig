@@ -1,0 +1,9 @@
+[user]
+	email = 1710745401@qq.com
+	name = xuhaoran
+[credential "https://gitee.com"]
+	provider = generic
+[http]
+	proxy = http://127.0.0.1:10809
+[https]
+	proxy = http://127.0.0.1:10809
