@@ -8,7 +8,7 @@ python scripts/colmap2nerf.py --video_in data\nerf\chair\VID_20231121_161900.MP4
 
 
 ***Nerfstudio***
-
+跟着官方文档走，Autodesk不能用colmap
 #处理输入数据
 ns-process-data {images, video} --data {DATA_PATH} --output-dir {PROCESSED_DATA_DIR}
 ns-process-data images --data data/fox/images --output-dir data/fox/colmap
@@ -89,3 +89,14 @@ opencv-python
 python train.py -s <path to COLMAP or NeRF Synthetic dataset>
 python render.py -m <path to pre-trained model> -s <path to COLMAP dataset> 
 python view.py -s <path to COLMAP or NeRF Synthetic dataset> -m <path to trained model> 
+
+***FOCUS***
+先安装torch 匹配nvcc
+安装pytorch3d
+pytorch3d安装方法：
+windows：git下来自己安装，pip install -e .
+linux:使用conda安装
+
+python FOCUS/run_focus.py --method sfm --source_folder data/fox --output_folder output --colmap_exe D:\xuhaoran\COLMAP-3.8-windows-cuda\bin\colmap.exe --overwrite
+
+python FOCUS/run_focus.py --method sfm --source_folder data/rgb --output_folder output --colmap_exe D:\xuhaoran\COLMAP-3.8-windows-cuda\bin\colmap.exe  --make_predictions --overwrite
