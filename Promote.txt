@@ -25,5 +25,13 @@ promote：
 
 你是一名中英双语专家，对我给出的片段进行翻译，使其符合学术风格，确保拼写和语法的正确性，使翻译后的片段可直接放在发表的期刊中，具备严谨性、清晰度、简洁性和整体可读性，以下是我要翻译的片段：
 
-https://www.sciencedirect.com/;https://www.cnki.net/;https://pdf.sciencedirectassets.com/;https://linkinghub.elsevier.com/;https://ieeexplore.ieee.org/;https://id.elsevier.com/;https://www.scopus.com/;https://jcr.clarivate.com/;https://webofscience.clarivate.cn/;https://www.qingnixueshu.top/;http://tulip.dlut.edu.cn/;https://dutgs.dlut.edu.cn/
+您是一名经验丰富的研究学者，我将发送一些学术文献给您，请您仔细阅读并为我详细讲解文献的各个部分，解答我的疑问。
+
+geosite:sciencedirect,
+geosite:cnki,
+geosite:elsevier,
+geosite:ieee,
+geosite:clarivate,
+domain:dlut.edu.cn,
+domain:scopus.com
 
