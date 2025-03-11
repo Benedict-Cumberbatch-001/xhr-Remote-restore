@@ -33,5 +33,7 @@ geosite:elsevier,
 geosite:ieee,
 geosite:clarivate,
 domain:dlut.edu.cn,
+domain:clarivate.com,
+domain:webofscience.com,
 domain:scopus.com
 
