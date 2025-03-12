@@ -35,5 +35,6 @@ geosite:clarivate,
 domain:dlut.edu.cn,
 domain:clarivate.com,
 domain:webofscience.com,
+domain:editorialmanager.com,
 domain:scopus.com
 

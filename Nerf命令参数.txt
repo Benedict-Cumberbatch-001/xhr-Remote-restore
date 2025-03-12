@@ -15,7 +15,7 @@ ns-process-data images --data data/fox/images --output-dir data/fox/colmap
 
 #训练
 ns-train nerfacto --data {PROCESSED_DATA_DIR}
-ns-train nerfacto --data data/fox/colmap --vis viewer_legacy
+ns-train nerfacto --data data/fox/colmap
 
 #导出点云
 ns-export pointcloud --load-config outputs/colmap/nerfacto/2024-12-09_154059/config.yml --output-dir exports/pcd  --normal-method open3d
